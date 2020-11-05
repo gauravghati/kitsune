@@ -50,13 +50,30 @@
 {% block below_main %}
   <nav class="tabs">
     <ul data-slug="kb-overview" class="tabs--list readout-modes">
-      {% for key, name in overview_modes %}
-        <li class="tabs--item mode {% if key == 2 %}active{% endif %}" data-url="{{ url('dashboards.contributors_overview_rows')|urlparams(max=10, mode=key, locale=locale, product=product.slug) }}">
-          <a class="tabs--link {% if key == 2 %}is-active{% endif %}" href="#">
-            <span>{{ name }}</span>
-          </a>
-        </li>
-      {% endfor %}
+
+      <li class="tabs--item mode" data-url="{{ url('dashboards.contributors_overview_rows')|urlparams(max=10, mode=0, product=product.slug) }}">
+        <a class="tabs--link {% if mode==0 %}is-active{% endif %}" href="">
+          <span>{{ _('Last 7 Days') }}</span>
+        </a>
+      </li>
+
+      <li class="tabs--item mode" data-url="{{ url('dashboards.contributors_overview_rows')|urlparams(max=10, mode=2, product=product.slug) }}">
+        <a class="tabs--link {% if mode==2 %}is-active{% endif %}" href="">
+          <span>{{ _('Last 30 Days') }}</span>
+        </a>
+      </li>
+
+      <li class="tabs--item mode" data-url="{{ url('dashboards.contributors_overview_rows')|urlparams(max=10, mode=3, product=product.slug) }}">
+        <a class="tabs--link {% if mode==3 %}is-active{% endif %}" href="">
+          <span>{{ _('Last 90 Days') }}</span>
+        </a>
+      </li>
+
+      <li class="tabs--item mode" data-url="{{ url('dashboards.contributors_overview_rows')|urlparams(max=10, mode=4, product=product.slug) }}">
+        <a class="tabs--link {% if mode==4 %}is-active{% endif %}" href="">
+          <span>{{ _('All time') }}</span>
+        </a>
+      </li>
     </ul>
   </nav>
 

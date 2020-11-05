@@ -219,7 +219,7 @@ def kb_overview_rows(mode=None, max=None, locale=None, product=None, category=No
 
     docs = docs.extra(select=select, select_params=(mode,))
 
-    if product:
+    if product!="all" and product:
         docs = docs.filter(products__in=[product])
 
     if category:
@@ -280,6 +280,10 @@ def kb_overview_rows(mode=None, max=None, locale=None, product=None, category=No
 
         rows.append(data)
 
+    print(mode)
+    print(len(rows))
+    if len(rows)!=0:
+        print(rows[0])
     return rows
 
 

@@ -96,6 +96,7 @@ def contributors_overview(request):
             "products": Product.objects.filter(visible=True),
             "category": category,
             "categories": CATEGORIES,
+            "mode": request.GET.get("mode", 2)
         },
     )
 
@@ -160,6 +161,7 @@ def contributors(request):
             "overview_modes": PERIODS,
             "category": category,
             "categories": CATEGORIES,
+            "mode": request.GET.get("mode", 2)
         },
     )
 
@@ -252,7 +254,10 @@ def aggregated_metrics(request):
 
 def _get_product(request):
     product_slug = request.GET.get("product")
-    if product_slug:
+
+    if product_slug=="[]": 
+        return "all"
+    elif product_slug:
         return get_object_or_404(Product, slug=product_slug)
 
     return None
